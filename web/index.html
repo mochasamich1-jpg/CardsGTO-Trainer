@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardsGTO — Exploit Training Room</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="tile">C</div>
+      <div>
+        <div class="bname">CardsGTO</div>
+        <div class="bsub">Exploit training room</div>
+      </div>
+    </div>
+
+    <section>
+      <label>Session</label>
+      <div class="big" id="sessHands">0 / 50</div>
+      <div class="bar"><i id="sessBar"></i></div>
+      <div class="cap" id="sessCap">block 1</div>
+    </section>
+
+    <section>
+      <label>Focus</label>
+      <div class="big" id="focusTitle">Play a few hands</div>
+      <div class="cap" id="focusCap">Your most-flagged leak shows up here.</div>
+    </section>
+
+    <section>
+      <label>Review engine</label>
+      <div class="big">Exploit rules v1</div>
+      <div class="cap"><span class="dot"></span>10 population rules active</div>
+    </section>
+
+    <div class="note">
+      <b>After-hand coaching</b>
+      No hints while you play. Every decision is compared against the live-1/2
+      exploit baseline when the hand ends.
+    </div>
+
+    <button id="resetBtn" class="ghost">Reset session</button>
+  </aside>
+
+  <header id="topbar">
+    <div class="metric"><b id="mHands">0</b><span>hands</span></div>
+    <div class="metric"><b id="mRate">—</b><span>hands/hr</span></div>
+    <div class="metric"><b id="mClean">—</b><span>clean hands</span></div>
+    <div class="metric"><b id="mNet">$0</b><span>session net</span></div>
+    <div class="metric"><b id="mBB">—</b><span>bb/100</span></div>
+    <div class="spacer"></div>
+    <div class="pill"><span class="dot"></span>$1/$2 · 9-max · live</div>
+  </header>
+
+  <main id="main">
+    <div class="table-meta left">$1/$2 · 9-MAX · $6 RAKE</div>
+    <div class="table-meta right" id="handTag">HAND #—</div>
+
+    <div id="table">
+      <div id="felt"></div>
+      <div id="center">
+        <div id="potLabel">Pot</div>
+        <div id="potAmt"></div>
+        <div id="board"></div>
+        <div id="street"></div>
+      </div>
+      <!-- seat pods + bet chips injected by JS -->
+    </div>
+
+    <div id="actionbar">
+      <div id="bar-idle">
+        <div class="decision-copy">
+          <div class="dc-label">Table ready</div>
+          <div class="dc-main" id="idleMsg">Deal to start the session</div>
+        </div>
+        <div class="btns">
+          <button id="dealBtn" class="accent big">Deal next hand</button>
+        </div>
+      </div>
+
+      <div id="bar-decision" class="hidden">
+        <div class="decision-copy">
+          <div class="dc-label" id="decLabel">Your decision · Preflop</div>
+          <div class="dc-main" id="decMain">$2 to call</div>
+        </div>
+        <div class="btns">
+          <button id="foldBtn" class="dark fold">Fold</button>
+          <button id="callBtn" class="dark">Check</button>
+          <button id="raiseBtn" class="accent">Raise</button>
+        </div>
+      </div>
+
+      <div id="bar-sizing" class="hidden">
+        <div class="sizing-left">
+          <div class="sizepresets">
+            <button data-frac="0.33">⅓</button>
+            <button data-frac="0.5">½</button>
+            <button data-frac="0.75">¾</button>
+            <button data-frac="1">Pot</button>
+            <button data-frac="allin">All-in</button>
+          </div>
+          <input type="range" id="raiseSlider" />
+        </div>
+        <div class="sizing-right">
+          <div class="amt" id="raiseAmt">$0</div>
+          <button id="cancelRaise" class="dark">Cancel</button>
+          <button id="confirmRaise" class="accent">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside id="rightpanel">
+    <div class="rp-section" id="rp-review">
+      <div class="rp-head">
+        <span>Review</span>
+        <button id="reviewBtn" class="mini hidden">last hand</button>
+      </div>
+
+      <div id="reviewLock">
+        <div class="lock-ring">◎</div>
+        <div class="lock-title">Review unlocks after the hand</div>
+        <div class="lock-copy">Play naturally. CardsGTO records each decision, then
+          grades the completed line against the live-pool exploit strategy.</div>
+      </div>
+
+      <div id="reviewBlock" class="hidden">
+        <div id="reviewSummary"></div>
+        <ul id="reviewFindings"></ul>
+      </div>
+    </div>
+
+    <div class="rp-section grow">
+      <div class="rp-head"><span>Hand feed</span></div>
+      <div id="feed"></div>
+    </div>
+  </aside>
+
+  <script src="/static/table.js"></script>
+</body>
+</html>

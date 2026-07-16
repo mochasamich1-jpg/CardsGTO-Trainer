@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "game": "9-max full ring $1/$2 live NLHE, ~100bb",
+    "tuning": "tight for heavy rake ($6 cap @ 10%) + recreational pool",
+    "source": "recon 2026-07-15: GTO Wizard / RangeConverter / PokerCoaching baselines + Upswing live/rake adjustments"
+  },
+  "sizing": {
+    "open": "3bb, +1bb per limper",
+    "threebet_ip": "3x the open",
+    "threebet_oop": "4x the open",
+    "fourbet": "2.2-2.5x the 3bet",
+    "iso": "4-5bb + 1bb per limper"
+  },
+  "rfi": {
+    "UTG":  "22+, ATs+, KTs+, QTs+, JTs, T9s, AQo+, KQo",
+    "UTG1": "22+, A9s+, A5s, KTs+, QTs+, JTs, T9s, 98s, AJo+, KQo",
+    "MP":   "22+, A8s+, A5s-A4s, K9s+, QTs+, J9s+, T9s, 98s, AJo+, KQo",
+    "LJ":   "22+, A7s+, A5s-A2s, K9s+, Q9s+, J9s+, T8s+, 98s, 87s, ATo+, KJo+, QJo",
+    "HJ":   "22+, A2s+, K8s+, Q9s+, J9s+, T8s+, 97s+, 87s, 76s, 65s, ATo+, KJo+, QJo, JTo",
+    "CO":   "22+, A2s+, K5s+, Q8s+, J8s+, T8s+, 97s+, 86s+, 76s, 65s, 54s, A9o+, KTo+, QTo+, JTo",
+    "BTN":  "22+, A2s+, K2s+, Q5s+, J7s+, T7s+, 96s+, 85s+, 75s+, 64s+, 54s, 43s, A2o+, K8o+, Q9o+, J9o+, T9o, 98o",
+    "SB":   "22+, A2s+, K5s+, Q7s+, J8s+, T8s+, 97s+, 86s+, 76s, 65s, 54s, A7o+, A5o, KTo+, QTo+, JTo"
+  },
+  "threebet": {
+    "vs_early":  { "value": "QQ+, AKs, AKo", "bluff": "A5s" },
+    "vs_middle": { "value": "JJ+, AQs+, AKo", "bluff": "A5s-A4s, KJs" },
+    "vs_late":   { "value": "TT+, AQs+, AKo", "bluff": "A5s-A4s, KJs, QJs" }
+  },
+  "flat_vs_open": {
+    "comment": "IP flatting range vs a raise (set-mine + dominant playables); OOP prefer 3bet-or-fold",
+    "vs_early":  "22-JJ, AJs+, ATs, KQs, KJs, QJs, JTs, T9s",
+    "vs_middle": "22-TT, AJs+, ATs, KQs, KJs, QJs, JTs",
+    "vs_late":   "22-TT, ATs+, KTs+, QTs+, JTs, T9s, 98s, KQo, AJo"
+  },
+  "position_bucket": {
+    "UTG": "vs_early", "UTG1": "vs_early",
+    "MP": "vs_middle", "LJ": "vs_middle", "HJ": "vs_middle",
+    "CO": "vs_late", "BTN": "vs_late", "SB": "vs_late", "BB": "vs_late"
+  }
+}
