@@ -4,6 +4,8 @@ __pycache__/
 *.pyo
 scratch/
 data/solver_cache/
+solver/texassolver/
+solver/outputs/
 *.log
 .DS_Store
 Thumbs.db
